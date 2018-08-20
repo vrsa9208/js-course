@@ -1,3 +1,5 @@
+import './site.css';
+
 alert('Hello World');
 document.getElementById('main').innerHTML = 'Hello world';
 
