@@ -3,9 +3,19 @@ document.getElementById("main").innerHTML = "Hello world";
 
 
 function showRandomWords() {
-    for (let i = 1; i <= getRandomNumber(); i++) {
-        console.log(getRhyme(i));
+    let i = 1;
+    let randomNumber = getRandomNumber();
+    /*for (let i = 1; i <= getRandomNumber(); i++) {
+        let newElement = document.createElement("div");
+        newElement.innerHTML = getRhyme(i);
+        document.getElementById("main").append(newElement);
+    }*/
+    while(i <= randomNumber) {
+        let newElement = document.createElement("div");
+        newElement.innerHTML = getRhyme(i++);
+        document.getElementById("main").append(newElement);
     }
+
 }
 
 
