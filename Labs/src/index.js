@@ -1,7 +1,7 @@
 import './site.css';
 import getBrowserInfo from './getBrowserInfo';
 
-alert('Hello World');
+alert('Hello Node JS');
 document.getElementById('main').innerHTML = 'Hello world';
 
 
