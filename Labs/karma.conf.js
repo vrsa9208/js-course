@@ -15,8 +15,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'spec/*[sS]pec.js"',
-      'spec/*[sS]pec.js'
+      "spec/*[sS]pec.js"
     ],
 
 
@@ -31,6 +30,7 @@ module.exports = function (config) {
     },
 
     webpack: {
+      mode: "development",
       module: {
         rules: [{
           test: /\.js$/,
