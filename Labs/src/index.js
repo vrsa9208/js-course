@@ -1,4 +1,5 @@
 import './site.css';
+import getBrowserInfo from './getBrowserInfo';
 
 alert('Hello World');
 document.getElementById('main').innerHTML = 'Hello world';
@@ -55,3 +56,4 @@ function getRhyme(number) {
 }
 
 showRandomWords();
+document.getElementById('main').innerHTML = getBrowserInfo();

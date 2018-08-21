@@ -6,7 +6,9 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2016
+        "ecmaVersion": 2016,
+        "sourceType": "module",
+        "allowImportExportEverywhere": true 
     },
     "rules": {
         "indent": [
@@ -24,6 +26,7 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console":"off"
     }
 }
