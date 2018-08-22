@@ -11,7 +11,8 @@
     "server": "nodemon src/server.js",
     "dev": "concurrently --kill-others \"npm run build-dev\" \"npm run server\"",
     "dev-test": "babel-node spec/runSpecs",
-    "ui-test": "karma start --singleRun"
+    "ui-test": "karma start --singleRun",
+    "babel": "babel-node"
   },
   "author": "",
   "license": "ISC",
