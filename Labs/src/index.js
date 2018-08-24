@@ -5,15 +5,12 @@ import jsonPersons from './persons.json';
 //alert('Hello Node JS');
 document.getElementById('main').innerHTML = 'Hello world';
 
-function getPersons() {
-    const promise = new Promise((resolve, reject) => {
-        // We will do async stuff here in a minute
+async function getPersons() {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('finished reading persons', jsonPersons);
             resolve(jsonPersons);
         }, 3000);
     });
-    return promise;
 }
 
 function getPersonsCardsAsHtml(persons) {
@@ -50,7 +47,7 @@ function getPersonsCardsAsHtml(persons) {
 }
 
 
-function showRandomWords() {
+function showRandomWords() { // eslint-disable-line no-unused-vars
     let counter = 1;
     let randomNumber = getRandomNumber();
     /*for (let i = 1; i <= getRandomNumber(); i++) {
@@ -77,35 +74,33 @@ function getRandomNumber() {
 
 function getRhyme(number) {
     switch (number) {
-        case 1:
-            return 'fun';
-        case 2:
-            return 'blue';
-        case 3:
-            return 'free';
-        case 4:
-            return 'pour';
-        case 5:
-            return 'hive';
-        case 6:
-            return 'kicks';
-        case 7:
-            return 'heaven';
-        case 8:
-            return 'skate';
-        case 9:
-            return 'rhyme';
-        case 10:
-            return 'pen';
+    case 1:
+        return 'fun';
+    case 2:
+        return 'blue';
+    case 3:
+        return 'free';
+    case 4:
+        return 'pour';
+    case 5:
+        return 'hive';
+    case 6:
+        return 'kicks';
+    case 7:
+        return 'heaven';
+    case 8:
+        return 'skate';
+    case 9:
+        return 'rhyme';
+    case 10:
+        return 'pen';
     }
 }
 
-function showPersonsCards() {
-    getPersons().then( listOfPeople => {
-        console.log('Promise is resolved', listOfPeople);
-        let personsCardsHtml = getPersonsCardsAsHtml(listOfPeople);
-        document.getElementById('main').innerHTML = personsCardsHtml;
-    });
+async function showPersonsCards() {
+    let persons = await getPersons();
+    let personsCardsHtml = getPersonsCardsAsHtml(persons);
+    document.getElementById('main').innerHTML = personsCardsHtml;
 }
 
 //showRandomWords();
