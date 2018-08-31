@@ -6,7 +6,7 @@ import jsonPersons from './persons.json';
 document.getElementById('main').innerHTML = 'Hello world';
 
 async function getPersons() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             resolve(jsonPersons);
         }, 3000);
@@ -106,3 +106,39 @@ async function showPersonsCards() {
 //showRandomWords();
 //document.getElementById('main').innerHTML = getBrowserInfo();
 showPersonsCards();
+
+function addPerson(event) {
+    let first = document.getElementById('input-first').value;
+    let last = document.getElementById('input-last').value;
+    let email = document.getElementById('input-email').value;
+    let cell = document.getElementById('input-cell').value;
+    let photoUrl = document.getElementById('input-photo-url').value;
+    
+    let newPerson = {
+        name: {
+            first: first,
+            last: last
+        },
+        picture: {
+            large: photoUrl
+        },
+        location: {
+            street: 'Simple street',
+            city: 'Simple city',
+            country: 'Simple country',
+            state: 'Simple state',
+            postcode: 'Simple postcode'
+        },
+        email: email,
+        cell: cell,
+        gender: 'No gender'
+    };
+    jsonPersons.unshift(newPerson);
+    let personsCardsHtml = getPersonsCardsAsHtml(jsonPersons);
+    document.getElementById('main').innerHTML = personsCardsHtml;
+
+    document.querySelector('form').reset();
+}
+
+document.querySelector('form').addEventListener('submit', ev => ev.preventDefault());
+document.getElementById('button-add-person').addEventListener('click', addPerson);

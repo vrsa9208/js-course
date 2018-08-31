@@ -55,3 +55,7 @@ body {
   border: 1px solid var(--bright1);
   padding: 2px;
 }
+
+input {
+  display: block;
+}
