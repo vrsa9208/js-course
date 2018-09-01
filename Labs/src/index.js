@@ -1,16 +1,12 @@
 import './site.css';
 //import getBrowserInfo from './getBrowserInfo';
-import jsonPersons from './persons.json';
 
 //alert('Hello Node JS');
 document.getElementById('main').innerHTML = 'Hello world';
+let jsonPersons = [];
 
-async function getPersons() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(jsonPersons);
-        }, 3000);
-    });
+async function getPersons(numberOfPersons=5) {
+    return fetch(`https://randomuser.me/api/?results=${numberOfPersons}`);
 }
 
 function getPersonsCardsAsHtml(persons) {
@@ -97,17 +93,26 @@ function getRhyme(number) {
     }
 }
 
-async function showPersonsCards() {
-    let persons = await getPersons();
-    let personsCardsHtml = getPersonsCardsAsHtml(persons);
-    document.getElementById('main').innerHTML = personsCardsHtml;
+function loadPersonsCards() {
+    let numberOfPersons = 3;
+    getPersons(numberOfPersons)
+    .then(response => response.json())
+    .then(jsonResponse => {
+        jsonPersons = jsonResponse.results;
+        showPersonsCards(jsonPersons);
+    });
 }
 
 //showRandomWords();
 //document.getElementById('main').innerHTML = getBrowserInfo();
-showPersonsCards();
+loadPersonsCards();
 
-function addPerson(event) {
+function showPersonsCards(persons) {
+    let personsCardsHtml = getPersonsCardsAsHtml(persons);
+    document.getElementById('main').innerHTML = personsCardsHtml;
+}
+
+function addPerson() {
     let first = document.getElementById('input-first').value;
     let last = document.getElementById('input-last').value;
     let email = document.getElementById('input-email').value;
@@ -134,8 +139,7 @@ function addPerson(event) {
         gender: 'No gender'
     };
     jsonPersons.unshift(newPerson);
-    let personsCardsHtml = getPersonsCardsAsHtml(jsonPersons);
-    document.getElementById('main').innerHTML = personsCardsHtml;
+    showPersonsCards(jsonPersons);
 
     document.querySelector('form').reset();
 }
